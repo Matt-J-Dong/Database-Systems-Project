@@ -40,5 +40,19 @@ def success():
     last_name = request.args.get('last_name')
     return f"Thank you, {first_name} {last_name}, for purchasing our consultancy package!"
 
+
+# Textbook Lookup Route
+@app.route("/textbooks", methods=["GET", "POST"])
+def textbooks():
+    search_result = None
+    if request.method == "POST":
+        title = request.form["title"].strip().lower()
+        df = pd.read_csv("textbooks.csv")
+        search_result = df[df["Title"].str.lower() == title]
+        if search_result.empty:
+            search_result = None
+    return render_template("textbooks.html", search_result=search_result)
+
+
 if __name__ == '__main__':
     app.run(debug=True)

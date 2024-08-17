@@ -1,0 +1,21 @@
+ISBN,Title,Author,Publisher,Edition,Publication_Year,Topic,Topic_ID
+123-45678-123-1,Algebra for Beginners,John Doe,HarperCollins,1,1999,Algebra,1
+234-56789-234-2,Geometry Basics,Jane Smith,Penguin Random House,2,2003,Geometry,2
+345-67890-345-3,Learning French,Michael Brown,Macmillan Publishers,3,2015,French,3
+456-78901-456-4,Chinese Language and Culture,Emily Johnson,Oxford University Press,4,2018,Chinese,4
+567-89012-567-5,Mastering English,Sarah Davis,HarperCollins,1,2020,English,5
+678-90123-678-6,Introduction to Biology,Chris Lee,Penguin Random House,2,2005,Biology,6
+789-01234-789-7,Fundamentals of Chemistry,David Wilson,Macmillan Publishers,3,2012,Chemistry,7
+890-12345-890-8,US History Overview,John Doe,Oxford University Press,4,2008,US History,8
+901-23456-901-9,World History Insights,Jane Smith,HarperCollins,5,1997,World History,9
+112-34567-012-1,Advanced Algebra,Michael Brown,Penguin Random House,1,2011,Algebra,1
+223-45678-123-2,Geometry for Advanced Learners,Emily Johnson,Macmillan Publishers,2,2019,Geometry,2
+334-56789-234-3,French Language Mastery,Sarah Davis,Oxford University Press,3,2001,French,3
+445-67890-345-4,Modern Chinese Culture,Chris Lee,HarperCollins,4,2023,Chinese,4
+556-78901-456-5,English Grammar and Composition,David Wilson,Penguin Random House,5,2010,English,5
+667-89012-567-6,Cell Biology Essentials,John Doe,Macmillan Publishers,1,1995,Biology,6
+778-90123-678-7,Organic Chemistry Principles,Jane Smith,Oxford University Press,2,2017,Chemistry,7
+889-01234-789-8,American History Through the Ages,Michael Brown,HarperCollins,3,2009,US History,8
+990-12345-890-9,World War II Studies,Emily Johnson,Penguin Random House,4,2002,World History,9
+101-23456-901-0,Algebra in the Modern World,Sarah Davis,Macmillan Publishers,5,2021,Algebra,1
+212-34567-012-1,Geometry and Trigonometry,Chris Lee,Oxford University Press,1,2014,Geometry,2

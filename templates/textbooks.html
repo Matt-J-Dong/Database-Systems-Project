@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Textbook Lookup</title>
+</head>
+<body>
+    <h1>Textbook Lookup</h1>
+    <form action="/textbooks" method="post">
+        <label for="title">Enter Textbook Title:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if search_result is not none %}
+        <h2>Search Results:</h2>
+        <table>
+            <tr>
+                <th>ISBN</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>Edition</th>
+                <th>Publication Year</th>
+                <th>Topic</th>
+            </tr>
+            {% for index, row in search_result.iterrows() %}
+            <tr>
+                <td>{{ row.ISBN }}</td>
+                <td>{{ row.Title }}</td>
+                <td>{{ row.Author }}</td>
+                <td>{{ row.Publisher }}</td>
+                <td>{{ row.Edition }}</td>
+                <td>{{ row.Publication_Year }}</td>
+                <td>{{ row.Topic }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% elif search_result is none and request.method == 'POST' %}
+        <p>No textbook found with that title.</p>
+    {% endif %}
+    
+    <p><a href="/">Back to Home</a></p>
+</body>
+</html>
