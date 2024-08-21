@@ -13,7 +13,7 @@
         <button type="submit">Search</button>
     </form>
 
-    {% if search_result is not none %}
+    {% if search_result %}
         <h2>Search Results:</h2>
         <table>
             <tr>
@@ -25,22 +25,23 @@
                 <th>Publication Year</th>
                 <th>Topic</th>
             </tr>
-            {% for index, row in search_result.iterrows() %}
+            {% for book in search_result %}
             <tr>
-                <td>{{ row.ISBN }}</td>
-                <td>{{ row.Title }}</td>
-                <td>{{ row.Author }}</td>
-                <td>{{ row.Publisher }}</td>
-                <td>{{ row.Edition }}</td>
-                <td>{{ row.Publication_Year }}</td>
-                <td>{{ row.Topic }}</td>
+                <td>{{ book.ISBN }}</td>
+                <td>{{ book.Title }}</td>
+                <td>{{ book.Author }}</td>
+                <td>{{ book.Publisher }}</td>
+                <td>{{ book.Edition }}</td>
+                <td>{{ book.Publication_Year }}</td>
+                <td>{{ book.Topic }}</td>
             </tr>
             {% endfor %}
         </table>
-    {% elif search_result is none and request.method == 'POST' %}
+    {% elif search_result is not none %}
         <p>No textbook found with that title.</p>
     {% endif %}
     
     <p><a href="/">Back to Home</a></p>
 </body>
 </html>
+
