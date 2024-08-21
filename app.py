@@ -5,11 +5,8 @@ import os
 
 app = Flask(__name__)
 
-# Configure the SQLite database
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///textbooks.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
-# Initialize the database
 db = SQLAlchemy(app)
 
 
@@ -46,7 +43,6 @@ def index():
         last_name = request.form['last_name']
         school_name = request.form["school_name"]
         contact_email = request.form["contact_email"]
-        # Save the purchase details
         save_purchase(first_name, last_name, school_name, contact_email, price)
         return redirect(
             url_for(
@@ -96,15 +92,10 @@ def textbooks():
 def load_csv_to_db():
     with app.app_context():
         if not os.path.exists("textbooks.db"):
-            # Create the database tables
             db.create_all()
-
-        # Check if the table already has data
         if Textbook.query.first() is None:
-            # Load CSV data into the database
             df = pd.read_csv("textbooks.csv")
             for index, row in df.iterrows():
-                # Ensure no duplicate entry is added
                 if not Textbook.query.filter_by(ISBN=row["ISBN"]).first():
                     textbook = Textbook(
                         ISBN=row["ISBN"],
