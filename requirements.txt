@@ -1,5 +1,21 @@
-# DO NOT include azure-functions-worker in this file
-# The Python Worker is managed by Azure Functions platform
-# Manually managing azure-functions-worker may cause unexpected issues
-
+#ODBC Driver 18 for SQL Server also required to access the Azure SQL Databases, this is a local installation
 azure-functions
+blinker==1.8.2
+click==8.1.7
+colorama==0.4.6
+Flask==3.0.3
+Flask-SQLAlchemy==3.1.1
+greenlet==3.0.3
+itsdangerous==2.2.0
+Jinja2==3.1.4
+MarkupSafe==2.1.5
+numpy==2.0.1
+pandas==2.2.2
+pyodbc==5.1.0
+python-dateutil==2.9.0.post0
+pytz==2024.1
+six==1.16.0
+SQLAlchemy==2.0.32
+typing_extensions==4.12.2
+tzdata==2024.1
+Werkzeug==3.0.3
