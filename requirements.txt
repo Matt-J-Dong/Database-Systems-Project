@@ -1,4 +1,4 @@
-#ODBC Driver 18 for SQL Server also required to access the Azure SQL Databases
+#ODBC Driver 18 for SQL Server also required to access the Azure SQL Databases, this is a local installation
 azure-functions
 blinker==1.8.2
 click==8.1.7
