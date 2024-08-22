@@ -5,23 +5,30 @@ import os
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///textbooks.db"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-db = SQLAlchemy(app)
+# Update the SQLAlchemy Database URI to connect to Azure SQL Server
+server_name = "database-systems-project-server.database.windows.net"
+database_name = "Project_Database"
+username = "Project"
+password = "Testing1"
+driver = "ODBC Driver 18 for SQL Server"
 
+app.config["SQLALCHEMY_DATABASE_URI"] = (
+    f"mssql+pyodbc://{username}:{password}@{server_name}:1433/{database_name}?driver={driver}"
+)
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+db = SQLAlchemy(app)
 
 class Textbook(db.Model):
     __tablename__ = "textbooks"
-    id = db.Column(db.Integer, primary_key=True)
-    ISBN = db.Column(db.String(20), nullable=False)
+    ISBN = db.Column(db.String(20), primary_key=True, nullable=False)
+    Topic_ID = db.Column(db.Integer, primary_key=True, nullable=False)
     Title = db.Column(db.String(255), nullable=False)
     Author = db.Column(db.String(255), nullable=False)
     Publisher = db.Column(db.String(255), nullable=False)
     Edition = db.Column(db.Integer, nullable=False)
     Publication_Year = db.Column(db.Integer, nullable=False)
     Topic = db.Column(db.String(255), nullable=False)
-    Topic_ID = db.Column(db.Integer, nullable=False)
-
 
 def get_correlation_variable():
     df = pd.read_csv('correlation_data.csv')
@@ -91,12 +98,12 @@ def textbooks():
 
 def load_csv_to_db():
     with app.app_context():
-        if not os.path.exists("textbooks.db"):
-            db.create_all()
-        if Textbook.query.first() is None:
+        if not Textbook.query.first():
             df = pd.read_csv("textbooks.csv")
             for index, row in df.iterrows():
-                if not Textbook.query.filter_by(ISBN=row["ISBN"]).first():
+                if not Textbook.query.filter_by(
+                    ISBN=row["ISBN"], Topic_ID=row["Topic_ID"]
+                ).first():
                     textbook = Textbook(
                         ISBN=row["ISBN"],
                         Title=row["Title"],
@@ -116,7 +123,7 @@ def remove_duplicates():
         textbooks = Textbook.query.all()
         unique_books = {}
         for book in textbooks:
-            key = (book.ISBN, book.Title, book.Author)
+            key = (book.ISBN, book.Topic_ID)
             if key not in unique_books:
                 unique_books[key] = book
             else:
